@@ -1,0 +1,13 @@
+name: Rockerbox Rate Limits
+description: Rockerbox does not publicly document specific API rate limits. The platform provides API spend integrations with major advertising platforms (Google Ads, Facebook, TikTok, Pinterest, LinkedIn, Snapchat, Bing, Criteo, and others) and a REST API for querying attribution data. Rate limit policies are likely communicated to customers as part of contract agreements. Contact Rockerbox support for specific rate limit details applicable to your account.
+specificationVersion: '0.1'
+rateLimits:
+  - name: API Rate Limits
+    description: Specific rate limit thresholds are not publicly documented by Rockerbox. Limits are presumed to be negotiated or disclosed as part of enterprise contracts.
+    scope: account
+    notes: For rate limit details, contact Rockerbox support through the help portal at help.rockerbox.com or via your account representative.
+    references:
+      - name: API Integrations Documentation
+        url: https://help.rockerbox.com/category/wcd840uzni-api-integrations
+      - name: Setup and Technical Documentation
+        url: https://help.rockerbox.com/category/enoswvfeqo-setup-and-technical-documentation

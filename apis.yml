@@ -1,0 +1,56 @@
+aid: rockerbox
+name: Rockerbox
+description: Rockerbox is a unified marketing measurement platform with a REST API for querying multi-touch attribution data, channel performance, customer journeys, and media spend effectiveness across 100+ integrations, combining MTA, Marketing Mix Modeling, and incrementality testing on a SOC2-certified data foundation.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/rockerbox/refs/heads/main/apis.yml
+created: 2026-06-13
+modified: 2026-06-13
+specificationVersion: '0.19'
+tags:
+  - Marketing Attribution
+  - Multi-Touch Attribution
+  - Marketing Mix Modeling
+  - Incrementality Testing
+  - Media Spend
+  - Customer Journeys
+  - Marketing Analytics
+apis:
+  - aid: rockerbox:rockerbox-api
+    name: Rockerbox API
+    description: REST API for querying multi-touch attribution data, channel performance metrics, customer journeys, and media spend effectiveness across all integrated marketing channels.
+    humanURL: https://help.rockerbox.com/category/wcd840uzni-api-integrations
+    baseURL: https://backend-prod-k8s.rockerbox.tech
+    tags:
+      - Attribution
+      - Marketing Data
+      - Spend Analytics
+    properties:
+      - type: Documentation
+        url: https://help.rockerbox.com/category/wcd840uzni-api-integrations
+      - type: OpenAPI
+        url: https://backend-prod-k8s.rockerbox.tech/docs
+common:
+  - type: Website
+    url: https://www.rockerbox.com/
+  - type: Documentation
+    url: https://help.rockerbox.com/
+  - type: GitHubOrg
+    url: https://github.com/rockerbox
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/rockerbox
+  - type: Blog
+    url: https://www.rockerbox.com/blog
+  - type: Pricing
+    url: https://www.rockerbox.com/plans
+  - type: X
+    url: https://x.com/rockerbox
+  - type: Plans
+    url: plans/rockerbox-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/rockerbox-rate-limits.yml
+  - type: FinOps
+    url: finops/rockerbox-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

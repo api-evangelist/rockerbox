@@ -1,0 +1,23 @@
+name: Rockerbox Plans and Pricing
+description: Rockerbox uses a custom, quote-based pricing model. Customers select a mix of products from the Data Foundation suite (Collect, Track, Export) and analysis methodologies (Multi-Touch Attribution, Marketing Mix Modeling, Incrementality Testing). Pricing is tailored based on data volume, number of channels tracked, and selected feature set. Annual contracts are standard, with multi-year deals (2-3 years) common for enterprise customers. Base pricing starts around $2,000 per month.
+specificationVersion: '0.1'
+plans:
+  - name: Custom Enterprise
+    description: Fully custom plan for enterprise marketing teams. Includes selected Data Foundation products (Collect, Track, Export) and chosen analysis methodologies (MTA, MMM, Incrementality Testing). Pricing is negotiated based on data volume, channel count, and feature requirements.
+    url: https://www.rockerbox.com/plans
+    pricing:
+      model: custom
+      period: annual
+      currency: USD
+      notes: Starts around $2,000/month. Multi-year contracts (2-3 years) typically yield 10-20% discounts over annual agreements.
+    features:
+      - Multi-Touch Attribution (MTA)
+      - Marketing Mix Modeling (MMM)
+      - Incrementality Testing
+      - Unified Data Foundation (100+ integrations)
+      - Data Warehouse Export (BigQuery, Redshift, Snowflake)
+      - SOC2-certified data handling
+      - API spend integrations with major ad platforms
+      - Real-time Data Status Reporting
+      - Customer journey analytics
+      - Media spend effectiveness analysis

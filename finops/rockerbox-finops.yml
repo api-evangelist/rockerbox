@@ -1,0 +1,45 @@
+name: Rockerbox FinOps
+description: FinOps framework alignment for Rockerbox API consumption. Rockerbox operates on custom enterprise contracts with annual or multi-year terms. Cost management centers on contract negotiation, channel scope, and data volume. The platform helps marketing teams optimize media spend across channels, providing direct FinOps value through spend effectiveness analysis and budget forecasting via Marketing Mix Modeling.
+specificationVersion: '1.0'
+framework: FOCUS
+version: '1.0'
+provider: Rockerbox
+providerURL: https://www.rockerbox.com/
+costManagement:
+  model: contract
+  billingPeriod: annual
+  currency: USD
+  estimatedBaseCost:
+    amount: 2000
+    unit: per month
+    notes: Starting price; actual cost varies by product selection, data volume, and channel count. Enterprise contracts in high five figures annually are common.
+  discounts:
+    - type: multi-year
+      description: 2-3 year contracts typically yield 10-20% better pricing compared to annual agreements.
+    - type: prepayment
+      description: Annual prepayment typically results in 5-10% discounts.
+  costDrivers:
+    - name: Data Volume
+      description: Volume of marketing events and conversions tracked impacts pricing.
+    - name: Channel Count
+      description: Number of advertising channels and integrations included in the data foundation.
+    - name: Product Selection
+      description: Choice of analysis methodologies (MTA, MMM, Incrementality Testing) and data foundation products (Collect, Track, Export).
+    - name: Contract Term
+      description: Longer contract terms reduce per-unit costs.
+  optimization:
+    - name: Right-size product selection
+      description: Select only the analysis methodologies (MTA, MMM, Incrementality) needed for your measurement maturity level.
+    - name: Negotiate multi-year terms
+      description: Commit to 2-3 year contracts to unlock 10-20% pricing improvements.
+    - name: Leverage spend analytics
+      description: Use Rockerbox MMM and MTA outputs to reallocate media budget to higher-ROI channels, offsetting platform costs.
+    - name: Consolidate data sources
+      description: Use Rockerbox as a single attribution source to retire redundant analytics tools.
+  valueRealization:
+    description: Rockerbox provides direct FinOps value by measuring marketing spend effectiveness. MMM capabilities enable budget forecasting and scenario planning, while incrementality testing validates causal channel ROI, enabling data-driven media investment decisions.
+    references:
+      - name: Pricing and Plans
+        url: https://www.rockerbox.com/plans
+      - name: Platform Overview
+        url: https://www.rockerbox.com/
