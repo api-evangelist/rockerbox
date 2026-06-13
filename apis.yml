@@ -51,6 +51,12 @@ common:
     url: rate-limits/rockerbox-rate-limits.yml
   - type: FinOps
     url: finops/rockerbox-finops.yml
+  - type: BlogRSS
+    url: https://www.rockerbox.com/blog/rss.xml
+  - type: Blogs
+    url: blogs/blogs.json
+  - type: JsonLD
+    url: json-ld/rockerbox-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

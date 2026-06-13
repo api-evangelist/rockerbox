@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aid": "https://apis.io/aid",
+    "rockerbox": "https://www.rockerbox.com/",
+    "attribution": "https://www.rockerbox.com/attribution",
+    "mta": {
+      "@id": "https://www.rockerbox.com/multi-touch-attribution",
+      "@type": "@id"
+    },
+    "mmm": {
+      "@id": "https://www.rockerbox.com/marketing-mix-modeling",
+      "@type": "@id"
+    },
+    "incrementality": {
+      "@id": "https://www.rockerbox.com/incrementality-testing",
+      "@type": "@id"
+    },
+    "customerJourney": {
+      "@id": "https://www.rockerbox.com/customer-journey",
+      "@type": "@id"
+    },
+    "mediaSpend": {
+      "@id": "https://www.rockerbox.com/media-spend",
+      "@type": "@id"
+    },
+    "channel": {
+      "@id": "https://www.rockerbox.com/channel",
+      "@type": "@id"
+    },
+    "advertiser": "schema:advertiser",
+    "campaign": "schema:Campaign",
+    "conversion": "schema:Action",
+    "impression": "schema:Action",
+    "touchpoint": "schema:Action",
+    "roas": "schema:value",
+    "cpa": "schema:value"
+  },
+  "@type": "SoftwareApplication",
+  "@id": "https://www.rockerbox.com/",
+  "name": "Rockerbox",
+  "description": "Unified marketing measurement platform with REST API for querying multi-touch attribution data, channel performance, customer journeys, and media spend effectiveness.",
+  "url": "https://www.rockerbox.com/",
+  "applicationCategory": "Marketing Analytics",
+  "featureList": [
+    "Multi-Touch Attribution (MTA)",
+    "Marketing Mix Modeling (MMM)",
+    "Incrementality Testing",
+    "Media Spend Analytics",
+    "Customer Journey Mapping",
+    "Channel Performance Reporting"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.rockerbox.com/plans"
+  },
+  "sameAs": [
+    "https://github.com/rockerbox",
+    "https://www.linkedin.com/company/rockerbox",
+    "https://x.com/rockerbox"
+  ],
+  "provider": {
+    "@type": "Organization",
+    "name": "Rockerbox",
+    "url": "https://www.rockerbox.com/",
+    "sameAs": "https://www.linkedin.com/company/rockerbox"
+  }
+}
