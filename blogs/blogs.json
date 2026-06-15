@@ -2,7 +2,7 @@
   "aid": "rockerbox",
   "url": "https://www.rockerbox.com/blog",
   "rss": "https://www.rockerbox.com/blog/rss.xml",
-  "fetched": "2026-06-13",
+  "fetched": "2026-06-14T20:42:17Z",
   "posts": [
     {
       "title": "[Webinar] Stop Guessing, Start Leading: A Guide to Navigating Multiple Measurement Solutions",
@@ -46,5 +46,23 @@
       "pubDate": "2026-01-05",
       "description": "Highlights how teams used attribution, testing, and mix modeling for improved budget allocation and planning."
     }
-  ]
+  ],
+  "repo": "rockerbox",
+  "feeds": [
+    {
+      "source": "https://www.linkedin.com/company/rockerbox",
+      "feed_url": "https://www.linkedin.com/company/rockerbox",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://www.rockerbox.com/blog/rss.xml",
+      "feed_url": "https://www.rockerbox.com/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "post_count": 0
 }
