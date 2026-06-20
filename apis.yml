@@ -2,7 +2,7 @@ aid: rockerbox
 name: Rockerbox
 description: Rockerbox is a unified marketing measurement platform with a REST API for querying multi-touch attribution data, channel performance, customer journeys, and media spend effectiveness across 100+ integrations, combining MTA, Marketing Mix Modeling, and incrementality testing on a SOC2-certified data foundation.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/rockerbox/refs/heads/main/apis.yml
 created: 2026-06-13
 modified: 2026-06-13
