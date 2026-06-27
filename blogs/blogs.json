@@ -1,68 +1,21 @@
 {
-  "aid": "rockerbox",
-  "url": "https://www.rockerbox.com/blog",
-  "rss": "https://www.rockerbox.com/blog/rss.xml",
-  "fetched": "2026-06-14T20:42:17Z",
-  "posts": [
-    {
-      "title": "[Webinar] Stop Guessing, Start Leading: A Guide to Navigating Multiple Measurement Solutions",
-      "link": "https://www.rockerbox.com/blog/stop-guessing-start-leading-webinar",
-      "pubDate": "2026-05-07",
-      "description": "Addresses how conflicting metrics from multiple measurement systems create decision-making challenges for marketers."
-    },
-    {
-      "title": "Don't Let Your Media Spend Get Lost: How to Maximize ROI in Big Promotional Moments",
-      "link": "https://www.rockerbox.com/blog/maximize-roi-promotional-moments",
-      "pubDate": "2026-04-15",
-      "description": "Focuses on optimizing advertising budgets during peak promotional seasons like summer holidays."
-    },
-    {
-      "title": "[WEBINAR] The 5 Core Problems Holding Your Marketing Back (And How to Solve Them)",
-      "link": "https://www.rockerbox.com/blog/5-core-problems-marketing",
-      "pubDate": "2026-03-11",
-      "description": "Explores common marketing obstacles and their solutions across industries."
-    },
-    {
-      "title": "How to Optimize Your Media When You Are Spending Heavily On Meta and Google",
-      "link": "https://www.rockerbox.com/blog/optimize-media-meta-google",
-      "pubDate": "2026-03-10",
-      "description": "Discusses leveraging Meta and Google's combined reach across social, search, and video platforms for brand scaling."
-    },
-    {
-      "title": "QBR Strategy Sessions vs. Sales Pitches",
-      "link": "https://www.rockerbox.com/blog/qbr-strategy-sessions",
-      "pubDate": "2026-02-03",
-      "description": "Explores how sophisticated brands use their own data during quarterly business reviews."
-    },
-    {
-      "title": "2025 Media Benchmarks Analysis",
-      "link": "https://www.rockerbox.com/blog/2025-media-benchmarks",
-      "pubDate": "2026-01-23",
-      "description": "Reports that media became harder to scale efficiently in 2025, with implications for 2026 planning."
-    },
-    {
-      "title": "Better Outcomes with Rockerbox H2 2025",
-      "link": "https://www.rockerbox.com/blog/better-outcomes-h2-2025",
-      "pubDate": "2026-01-05",
-      "description": "Highlights how teams used attribution, testing, and mix modeling for improved budget allocation and planning."
-    }
-  ],
   "repo": "rockerbox",
   "feeds": [
-    {
-      "source": "https://www.linkedin.com/company/rockerbox",
-      "feed_url": "https://www.linkedin.com/company/rockerbox",
-      "title": "",
-      "saved": 0,
-      "method": "none"
-    },
     {
       "source": "https://www.rockerbox.com/blog/rss.xml",
       "feed_url": "https://www.rockerbox.com/blog/rss.xml",
       "title": "",
       "saved": 0,
       "method": "feed"
+    },
+    {
+      "source": "https://www.linkedin.com/company/rockerbox",
+      "feed_url": "https://www.linkedin.com/company/rockerbox",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
+  "fetched": "2026-06-27T12:03:07Z",
   "post_count": 0
 }

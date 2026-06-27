@@ -53,9 +53,9 @@ common:
     url: finops/rockerbox-finops.yml
   - type: BlogRSS
     url: https://www.rockerbox.com/blog/rss.xml
-  - type: Blogs
+  - type: Blog
     url: blogs/blogs.json
-  - type: JsonLD
+  - type: JSONLD
     url: json-ld/rockerbox-context.jsonld
 maintainers:
   - FN: Kin Lane
