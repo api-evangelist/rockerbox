@@ -31,6 +31,8 @@ apis:
       - type: OpenAPI
         url: https://backend-prod-k8s.rockerbox.tech/docs
 common:
+  - type: DomainSecurity
+    url: security/rockerbox-domain-security.yml
   - type: Website
     url: https://www.rockerbox.com/
   - type: Documentation

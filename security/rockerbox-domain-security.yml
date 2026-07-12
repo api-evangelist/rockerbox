@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.rockerbox.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 28 17:02:06 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: help.rockerbox.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 23 10:19:54 2026 GMT
+  hsts: false
+- host: backend-prod-k8s.rockerbox.tech
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Jan 20 23:59:59 2027 GMT
+  hsts: false
+domains:
+- domain: rockerbox.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: rockerbox.tech
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
