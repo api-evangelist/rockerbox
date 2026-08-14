@@ -1,23 +1,38 @@
 aid: rockerbox
 name: Rockerbox
-description: Rockerbox is a unified marketing measurement platform with a REST API for querying multi-touch attribution data, channel performance, customer journeys, and media spend effectiveness across 100+ integrations, combining MTA, Marketing Mix Modeling, and incrementality testing on a SOC2-certified data foundation.
+description: >-
+  Rockerbox is a New York-based unified marketing measurement platform that combines multi-touch
+  attribution (MTA), marketing mix modeling (MMM) and incrementality testing on a single first-party
+  data foundation spanning 100+ advertising integrations. Its developer surface is deliberately
+  narrow and unusual: there is no public REST API and no OpenAPI. Data goes IN through a documented
+  server-side conversion webhook, onsite tracking pixels, and batch files; results come OUT as
+  warehouse shares into Snowflake, BigQuery or Redshift against published schemas, plus scheduled and
+  ad hoc exports. Rockerbox does, however, run a genuinely modern agent surface on its Data
+  Foundation documentation host — an anonymous remote MCP server, an A2A agent card, a
+  provider-published Agent Skill, an llms.txt, and an explicit robots.txt Content-Signal grant.
 type: Index
 accessModel:
   pricing: enterprise
-  onboarding: unknown
+  onboarding: sales
   trial: false
   try_now: false
   public: false
   label: Enterprise
-  confidence: medium
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - https://www.rockerbox.com/plans
+  - https://data-foundation.rockerbox.com/warehousing/quickstart
+  generated: '2026-08-13'
+  method: searched
+  note: >-
+    Confirmed by search, not derived. The live plans page carries no price and only a "Talk to an
+    Expert" CTA; warehouse integration is explicitly a paid add-on enabled by a Rockerbox
+    representative. The former self-serve Free and Starter tiers have been retired — /signup-free now
+    redirects to /demo and /rockerbox-starter to /product.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rockerbox.png
 url: https://raw.githubusercontent.com/api-evangelist/rockerbox/refs/heads/main/apis.yml
 created: 2026-06-13
-modified: 2026-06-13
+modified: 2026-08-13
 specificationVersion: '0.19'
 tags:
   - Marketing Attribution
@@ -27,50 +42,175 @@ tags:
   - Media Spend
   - Customer Journeys
   - Marketing Analytics
+  - Data Warehousing
+  - Conversion Tracking
+  - Webhooks
 apis:
   - aid: rockerbox:rockerbox-api
-    name: Rockerbox API
-    description: REST API for querying multi-touch attribution data, channel performance metrics, customer journeys, and media spend effectiveness across all integrated marketing channels.
-    humanURL: https://help.rockerbox.com/category/wcd840uzni-api-integrations
-    baseURL: https://backend-prod-k8s.rockerbox.tech
+    name: Rockerbox Conversion & Marketing Event Ingestion
+    description: >-
+      Rockerbox's server-side integration. A documented HTTP POST endpoint that accepts one conversion
+      or marketing event per request as JSON, authenticated by a Rockerbox Advertiser ID passed in the
+      query string and issued by an account manager. Used for events that happen off the customer's
+      web property — in-store purchases, back-end funnel events, subscription lifecycle events. No
+      OpenAPI is published for it.
+    humanURL: https://help.rockerbox.com/article/5t050dmcxv-webhooks
+    baseURL: https://webhooks.getrockerbox.com
     tags:
-      - Attribution
+      - Conversion Tracking
+      - Webhooks
       - Marketing Data
-      - Spend Analytics
     properties:
       - type: Documentation
-        url: https://help.rockerbox.com/category/wcd840uzni-api-integrations
-      - type: OpenAPI
-        url: https://backend-prod-k8s.rockerbox.tech/docs
+        url: https://help.rockerbox.com/article/5t050dmcxv-webhooks
+      - type: Webhooks
+        url: asyncapi/rockerbox-webhooks.yml
+      - type: Authentication
+        url: authentication/rockerbox-authentication.yml
+      - type: Conventions
+        url: conventions/rockerbox-conventions.yml
+  - aid: rockerbox:rockerbox-data-foundation
+    name: Rockerbox Data Foundation
+    description: >-
+      Rockerbox's warehouse-share delivery surface and the documentation site that describes it. The
+      contract here is a set of published dataset schemas — log_conversions, clickstream, log_mta,
+      aggregate_mta, platform_* and taxonomy_lookup — shared natively into Snowflake, BigQuery or
+      Redshift, with a provider-published entity-relationship diagram. This host also serves the
+      remote MCP server, the A2A agent card, the Agent Skill and llms.txt.
+    humanURL: https://data-foundation.rockerbox.com/
+    baseURL: https://data-foundation.rockerbox.com
+    tags:
+      - Data Warehousing
+      - Marketing Analytics
+      - Multi-Touch Attribution
+    properties:
+      - type: Documentation
+        url: https://data-foundation.rockerbox.com/
+      - type: GettingStarted
+        url: https://data-foundation.rockerbox.com/warehousing/quickstart
+      - type: DataModel
+        url: data-model/rockerbox-data-model.yml
+      - type: MCPServer
+        url: mcp/rockerbox-mcp.yml
+      - type: AgentCard
+        url: a2a/rockerbox-a2a.yml
+      - type: AgentSkill
+        url: skills/_index.yml
+      - type: LLMsTxt
+        url: llms/rockerbox-llms.txt
 common:
-  - type: DomainSecurity
-    url: security/rockerbox-domain-security.yml
   - type: Website
     url: https://www.rockerbox.com/
+  - type: DeveloperPortal
+    url: https://data-foundation.rockerbox.com/
   - type: Documentation
     url: https://help.rockerbox.com/
-  - type: GitHubOrg
+  - type: APIReference
+    url: https://data-foundation.rockerbox.com/warehousing/schemas
+  - type: GettingStarted
+    url: https://data-foundation.rockerbox.com/warehousing/quickstart
+  - type: Support
+    url: https://help.rockerbox.com/article/ocjyw3jty7-rockerbox-support
+  - type: GitHubOrganization
     url: https://github.com/rockerbox
   - type: LinkedIn
     url: https://www.linkedin.com/company/rockerbox
-  - type: Blog
-    url: https://www.rockerbox.com/blog
-  - type: Pricing
-    url: https://www.rockerbox.com/plans
   - type: X
     url: https://x.com/rockerbox
+  - type: Blog
+    url: https://www.rockerbox.com/blog
+  - type: BlogRSS
+    url: https://www.rockerbox.com/blog/rss.xml
+  - type: Blog
+    url: blogs/blogs.json
+  - type: Pricing
+    url: https://www.rockerbox.com/plans
+  - type: Login
+    url: https://app.rockerbox.com/login
+  - type: TermsOfService
+    url: https://www.rockerbox.com/website-terms-of-use/
+  - type: PrivacyPolicy
+    url: https://www.rockerbox.com/privacy
+  - type: Compliance
+    url: https://www.rockerbox.com/faq/how-does-rockerbox-provide-secure-marketing-measurement
   - type: Plans
     url: plans/rockerbox-plans-pricing.yml
   - type: RateLimits
     url: rate-limits/rockerbox-rate-limits.yml
   - type: FinOps
     url: finops/rockerbox-finops.yml
-  - type: BlogRSS
-    url: https://www.rockerbox.com/blog/rss.xml
-  - type: Blog
-    url: blogs/blogs.json
   - type: JSONLD
     url: json-ld/rockerbox-context.jsonld
+  - type: DomainSecurity
+    url: security/rockerbox-domain-security.yml
+  - type: MCPServer
+    url: mcp/rockerbox-mcp.yml
+  - type: AgentCard
+    url: a2a/rockerbox-a2a.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: LLMsTxt
+    url: llms/rockerbox-llms.txt
+  - type: WellKnown
+    url: well-known/rockerbox-well-known.yml
+  - type: Webhooks
+    url: asyncapi/rockerbox-webhooks.yml
+  - type: DataModel
+    url: data-model/rockerbox-data-model.yml
+  - type: Authentication
+    url: authentication/rockerbox-authentication.yml
+  - type: Conventions
+    url: conventions/rockerbox-conventions.yml
+  - type: Idempotency
+    url: conventions/rockerbox-conventions.yml
+  - type: Conformance
+    url: conformance/rockerbox-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/rockerbox-lifecycle.yml
+  - type: Deprecation
+    url: https://data-foundation.rockerbox.com/warehousing/aggregate-mta-partition-migration
+  - type: Packages
+    url: packages/rockerbox-packages.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Rockerbox publishes no OpenAPI, GraphQL or AsyncAPI — confirmed by probing /openapi.json,
+    /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs, /docs and /redoc on every host and by
+    enumerating the docs corpus through Rockerbox's own MCP server, which returned no spec file. That
+    absence is a real finding, not a blocked run: the rest of the surface is public and machine-readable,
+    and this pass harvested a live MCP server, an A2A agent card, a provider-published Agent Skill, an
+    llms.txt, the documented webhook ingestion contract and the published warehouse schemas.
+  evidence:
+    - url: https://data-foundation.rockerbox.com/.well-known/agent-card.json
+      status: 200
+    - url: https://data-foundation.rockerbox.com/mcp
+      status: 200
+    - url: https://data-foundation.rockerbox.com/llms.txt
+      status: 200
+    - url: https://data-foundation.rockerbox.com/openapi.json
+      status: 404
+  checked: '2026-08-13'
+x-corrections:
+  - date: '2026-08-13'
+    field: apis[0].baseURL / apis[0].properties[].url
+    was: https://backend-prod-k8s.rockerbox.tech
+    now: https://webhooks.getrockerbox.com
+    reason: >-
+      STEP 0c ownership failure caught and corrected. The previous profile pointed this repo's only
+      API entry at backend-prod-k8s.rockerbox.tech, whose /docs route serves a Redocusaurus site whose
+      embedded OpenAPI 3.0.1 is titled "RockerBox API v1.0" with servers[]
+      https://backend-prod-k8s.rockerbox.tech/api and an auth spec at /auth/connect/token. That spec is
+      REAL and it PARSES — and it belongs to a DIFFERENT COMPANY. rockerbox.tech is Rockerbox, the
+      Texas tax-credit consultancy ("Rockerbox | Tax Credit Consultants | WOTC, ERTC, R&D, More"),
+      unrelated to rockerbox.com, the New York marketing-attribution platform this repo profiles. The
+      contaminated spec was NOT harvested and nothing was derived from it. The corrected entry points
+      at the ingestion host Rockerbox's own help centre documents.
