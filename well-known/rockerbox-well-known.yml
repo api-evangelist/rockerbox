@@ -1,0 +1,109 @@
+generated: '2026-08-13'
+method: probed
+description: >-
+  /.well-known/ discovery probe across every Rockerbox host. One real document was found — the A2A
+  agent card on the Data Foundation docs host — plus the Mintlify MCP manifest at the non-RFC path
+  /.well-known/mcp.json. Everything else is an honest absence. Two hosts produce SOFT 200s that are
+  NOT documents and are recorded as misses: app.rockerbox.com returns the same 1,325-byte SPA HTML
+  shell for every /.well-known/* path, and webhooks.getrockerbox.com returns the literal body "{}"
+  for every /.well-known/* path. No security.txt is served anywhere, so no SecurityTxt pointer is
+  emitted.
+hosts:
+- host: https://data-foundation.rockerbox.com
+  role: documentation (Rockerbox Data Foundation)
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    real_document: true
+    file: rockerbox-agent-card.json
+    note: A2A Agent Card. Graded in a2a/rockerbox-a2a.yml.
+  - path: /.well-known/mcp.json
+    status: 200
+    content_type: application/json
+    real_document: true
+    file: rockerbox-mcp.json
+    note: >-
+      Non-RFC path emitted by Mintlify. Advertises transport http and authentication none. The url it
+      names is a Mintlify build host; the working brand-domain endpoint is
+      https://data-foundation.rockerbox.com/mcp (see mcp/rockerbox-mcp.yml).
+  - path: /.well-known/agent-skills/rockerbox/skill.md
+    status: 200
+    content_type: text/markdown; charset=utf-8
+    real_document: true
+    file: ../skills/rockerbox-data-foundation.md
+    note: Provider-published Agent Skill referenced by the agent card and the MCP server.
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://www.rockerbox.com
+  role: website
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://help.rockerbox.com
+  role: help center (HelpDocs)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://app.rockerbox.com
+  role: application
+  soft_404: true
+  soft_404_note: >-
+    Every /.well-known/* path returns HTTP 200 with an identical 1,325-byte text/html SPA shell. All
+    eight are recorded as misses — a 200 that returns HTML is not a document.
+  documents:
+  - {path: /.well-known/security.txt, status: 200, real_document: false, content_type: text/html}
+  - {path: /.well-known/openid-configuration, status: 200, real_document: false, content_type: text/html}
+  - {path: /.well-known/oauth-authorization-server, status: 200, real_document: false, content_type: text/html}
+  - {path: /.well-known/oauth-protected-resource, status: 200, real_document: false, content_type: text/html}
+  - {path: /.well-known/api-catalog, status: 200, real_document: false, content_type: text/html}
+  - {path: /.well-known/ai-plugin.json, status: 200, real_document: false, content_type: text/html}
+  - {path: /.well-known/agent-card.json, status: 200, real_document: false, content_type: text/html}
+  - {path: /.well-known/agent.json, status: 200, real_document: false, content_type: text/html}
+- host: https://webhooks.getrockerbox.com
+  role: conversion / marketing event ingestion
+  soft_404: true
+  soft_404_note: >-
+    Every /.well-known/* path returns HTTP 200 with the three-byte body "{}". An empty JSON object is
+    not a discovery document; all eight are recorded as misses.
+  documents:
+  - {path: /.well-known/security.txt, status: 200, real_document: false, body: '{}'}
+  - {path: /.well-known/openid-configuration, status: 200, real_document: false, body: '{}'}
+  - {path: /.well-known/oauth-authorization-server, status: 200, real_document: false, body: '{}'}
+  - {path: /.well-known/oauth-protected-resource, status: 200, real_document: false, body: '{}'}
+  - {path: /.well-known/api-catalog, status: 200, real_document: false, body: '{}'}
+  - {path: /.well-known/ai-plugin.json, status: 200, real_document: false, body: '{}'}
+  - {path: /.well-known/agent-card.json, status: 200, real_document: false, body: '{}'}
+  - {path: /.well-known/agent.json, status: 200, real_document: false, body: '{}'}
+summary:
+  hosts_probed: 5
+  paths_probed: 43
+  real_documents: 3
+  soft_200_rejected: 16
+  security_txt_served: false
+  oauth_discovery_served: false
+robots_content_signal:
+  host: https://data-foundation.rockerbox.com
+  path: /robots.txt
+  status: 200
+  content_signal: 'ai-train=yes, search=yes, ai-input=yes'
+  note: >-
+    The docs host publishes an explicit Content-Signal directive permitting AI training, search and
+    AI input. Recorded verbatim; www.rockerbox.com/robots.txt carries no Content-Signal.

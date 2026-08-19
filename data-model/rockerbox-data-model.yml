@@ -1,0 +1,124 @@
+generated: '2026-08-13'
+method: searched
+source: https://data-foundation.rockerbox.com/warehousing/schemas
+description: >-
+  Rockerbox's machine-readable contract is not an HTTP API — it is a set of warehouse datasets shared
+  into the customer's Snowflake, BigQuery or Redshift. Rockerbox publishes those schemas, their join
+  keys, and a mermaid entity-relationship diagram on its Data Foundation docs site. This artifact is
+  that published model, transcribed — the entities, their identifying fields, and the exact join keys
+  Rockerbox documents between them. Nothing is inferred; every relationship below appears verbatim in
+  the provider's own ERD.
+delivery:
+  mode: warehouse-share
+  platforms:
+  - name: Snowflake
+    mechanism: native data sharing
+    features: [automated schema management, real-time data updates, custom database naming, nested data structure support]
+    docs: https://data-foundation.rockerbox.com/warehousing/snowflake
+  - name: Google BigQuery
+    mechanism: project-level integration
+    features: [multi-region support, automated table creation, nested data structure support]
+    docs: https://data-foundation.rockerbox.com/warehousing/bigquery
+  - name: Amazon Redshift
+    mechanism: IAM role-based external schema
+    features: [IAM role-based security, external schema configuration, automated data syncing]
+    docs: https://data-foundation.rockerbox.com/warehousing/redshift
+  - name: Snowflake Reader Account
+    mechanism: provisioned reader account for platforms with no native integration
+    features: [no Snowflake account required, Rockerbox covers storage and compute, monthly credit limit for egress]
+    docs: https://data-foundation.rockerbox.com/warehousing/snowflake-reader
+  access_note: >-
+    Warehouse integration is a PAID ADD-ON enabled by a Rockerbox representative — step 1 of the
+    published quickstart is "contact your Rockerbox representative". There is no self-service path.
+entities:
+- name: log_conversions
+  domain: first-party events
+  grain: one row per conversion event occurrence
+  pii: excluded
+  key_fields: [log_conversion_id, timestamp_conv, date, action, currency_code]
+  docs: https://data-foundation.rockerbox.com/warehousing/schema-log-conversion
+- name: log_conversions_user_identifiers
+  domain: first-party events
+  grain: one row per conversion event occurrence, user identifiers and PII only
+  pii: included
+  key_fields: [conversion_event_id, date, log_conversion_id, external_id, order_id, uid]
+- name: clickstream
+  domain: first-party events
+  grain: one row per page view and conversion event tracked onsite
+  key_fields: [event_id, session_id, uid, original_url, spend_key, tier_1, tier_2, tier_3, tier_4, tier_5]
+  docs: https://data-foundation.rockerbox.com/warehousing/schema-clickstream
+- name: clickstream_event_parameters
+  domain: first-party events
+  grain: log-level key/value event parameters per clickstream event
+  key_fields: [event_id, query_param_name, value]
+  docs: https://data-foundation.rockerbox.com/warehousing/schema-clickstream-events
+- name: log_mta
+  domain: attribution
+  grain: one row per marketing touchpoint in each user path to conversion
+  pii: excluded
+  key_fields: [conversion_event_id, date, log_mta_id, log_conversion_id, platform_join_key, sequence_number, timestamp_events, timestamp_conv, event_type, platform, tier_1, tier_2, tier_3, tier_4, tier_5]
+  docs: https://data-foundation.rockerbox.com/warehousing/schema-log-mta
+- name: log_mta_user_identifiers
+  domain: attribution
+  grain: user data associated with each marketing touchpoint
+  pii: included
+  key_fields: [conversion_event_id, date, log_mta_id, uid_event, hash_ip_event, user_agent_event, base_id]
+- name: aggregate_mta
+  domain: attribution
+  grain: attributed conversions, revenue and spend across all channels — a pivot of log-level MTA unioned with aggregate spend
+  key_fields: [conversion_event_id, platform_join_key, date, platform, tier_1, tier_2, tier_3, tier_4, tier_5, included_spend, normalized]
+  docs: https://data-foundation.rockerbox.com/warehousing/schema-aggregate-mta
+- name: platform_<platform>
+  domain: platform data
+  grain: platform-reported spend, conversions and performance metrics at ad level, hourly
+  supported_platforms: [Google, Meta/Facebook, Bing, TikTok, Snapchat, Pinterest, LinkedIn]
+  docs: https://data-foundation.rockerbox.com/warehousing/schema-platform-google
+- name: taxonomy_lookup
+  domain: normalization and metadata
+  grain: latest reporting taxonomy for all channels with spend tracking
+  key_fields: [join_key, parent_platform, platform, tier_1, tier_2, tier_3, tier_4, tier_5]
+  docs: https://data-foundation.rockerbox.com/warehousing/schema-taxonomy-lookup
+- name: conversion_event_metadata
+  domain: normalization and metadata
+  grain: metadata for every conversion event tracked in Rockerbox
+  key_fields: [conversion_event_id, conversion_event_name, first_reporting_date, active]
+relationships:
+- {from: log_conversions, to: log_conversions_user_identifiers, cardinality: one_to_one, via: 'date, conversion_event_id, log_conversion_id'}
+- {from: log_conversions, to: log_mta, cardinality: one_to_many, via: 'date, conversion_event_id, log_conversion_id'}
+- {from: log_conversions_user_identifiers, to: log_mta, cardinality: one_to_many, via: 'date, conversion_event_id, log_conversion_id'}
+- {from: log_mta, to: log_mta_user_identifiers, cardinality: one_to_many, via: 'date, conversion_event_id, log_mta_id'}
+- {from: clickstream, to: clickstream_event_parameters, cardinality: one_to_many_optional, via: 'date, event_id'}
+- {from: conversion_event_metadata, to: log_conversions, cardinality: one_to_many_optional, via: conversion_event_id}
+- {from: conversion_event_metadata, to: log_conversions_user_identifiers, cardinality: one_to_many_optional, via: conversion_event_id}
+- {from: conversion_event_metadata, to: log_mta, cardinality: one_to_many_optional, via: conversion_event_id}
+- {from: conversion_event_metadata, to: log_mta_user_identifiers, cardinality: one_to_many_optional, via: conversion_event_id}
+- {from: conversion_event_metadata, to: aggregate_mta, cardinality: one_to_many_optional, via: conversion_event_id}
+- {from: taxonomy_lookup, to: log_mta, cardinality: optional_to_many, via: 'platform_join_key -> join_key'}
+- {from: taxonomy_lookup, to: aggregate_mta, cardinality: optional_to_many, via: 'platform_join_key -> join_key'}
+- {from: taxonomy_lookup, to: clickstream, cardinality: optional_to_many, via: 'spend_key -> join_key'}
+attribution_models:
+  description: >-
+    Attribution credit columns published on aggregate_mta. Recorded from the provider's own Agent
+    Skill (skills/rockerbox-data-foundation.md).
+  models:
+  - {name: Even Weight, conversions_column: even, revenue_column: revenue_even}
+  - {name: Multi-Touch (Modeled), conversions_column: normalized, revenue_column: revenue_normalized}
+  - {name: First Touch, conversions_column: first_touch, revenue_column: revenue_first_touch}
+  - {name: Last Touch, conversions_column: last_touch, revenue_column: revenue_last_touch}
+taxonomy:
+  description: Standardized channel hierarchy applied across every dataset.
+  levels: [tier_1, tier_2, tier_3, tier_4, tier_5]
+render:
+  format: mermaid erDiagram
+  source: https://data-foundation.rockerbox.com/warehousing/schemas
+  note: The provider publishes the ERD inline as a mermaid diagram; this file transcribes it as structured data.
+x-evidence:
+- url: https://data-foundation.rockerbox.com/warehousing/schemas.md
+  http_status: 200
+  fetched: '2026-08-13'
+- url: https://data-foundation.rockerbox.com/warehousing-overview/platforms.md
+  http_status: 200
+  fetched: '2026-08-13'
+- url: https://data-foundation.rockerbox.com/warehousing/quickstart.md
+  http_status: 200
+  fetched: '2026-08-13'

@@ -1,23 +1,58 @@
 name: Rockerbox Plans and Pricing
-description: Rockerbox uses a custom, quote-based pricing model. Customers select a mix of products from the Data Foundation suite (Collect, Track, Export) and analysis methodologies (Multi-Touch Attribution, Marketing Mix Modeling, Incrementality Testing). Pricing is tailored based on data volume, number of channels tracked, and selected feature set. Annual contracts are standard, with multi-year deals (2-3 years) common for enterprise customers. Base pricing starts around $2,000 per month.
+generated: '2026-08-13'
+method: searched
+source: https://www.rockerbox.com/plans
 specificationVersion: '0.1'
+plan_count: 1
+description: >-
+  As published on 2026-08-13, the Rockerbox plans page carries NO price. It presents a product mix —
+  the Data Foundation products (Collect, Track, Export) plus the analysis methodologies (MTA, MMM,
+  Incrementality Testing, Journey) — and a single "Talk to an Expert" call to action. Pricing is
+  quote-based and gated behind sales.
+history_note: >-
+  Rockerbox previously ran two self-serve tiers and has retired both. The page source still contains
+  the markup for a "Rockerbox Free" plan (no credit card, basic aggregation for Social and Search,
+  Google Sheets templates, live spend trends dashboard) and a "Starter" plan (from $150/month, for
+  Shopify brands under $1M ad spend, priced on a monthly ad-spend slider from <$10K to >$100K) — but
+  both blocks are commented out in the HTML and therefore do not render. The linked landing pages
+  confirm the retirement: /signup-free now 302s to /demo and /rockerbox-starter now 302s to /product.
+  Recorded because the delta is the story; neither retired tier is counted in plan_count.
 plans:
-  - name: Custom Enterprise
-    description: Fully custom plan for enterprise marketing teams. Includes selected Data Foundation products (Collect, Track, Export) and chosen analysis methodologies (MTA, MMM, Incrementality Testing). Pricing is negotiated based on data volume, channel count, and feature requirements.
-    url: https://www.rockerbox.com/plans
-    pricing:
-      model: custom
-      period: annual
-      currency: USD
-      notes: Starts around $2,000/month. Multi-year contracts (2-3 years) typically yield 10-20% discounts over annual agreements.
-    features:
-      - Multi-Touch Attribution (MTA)
-      - Marketing Mix Modeling (MMM)
-      - Incrementality Testing
-      - Unified Data Foundation (100+ integrations)
-      - Data Warehouse Export (BigQuery, Redshift, Snowflake)
-      - SOC2-certified data handling
-      - API spend integrations with major ad platforms
-      - Real-time Data Status Reporting
-      - Customer journey analytics
-      - Media spend effectiveness analysis
+- name: Custom (contact sales)
+  description: >-
+    Customer selects a mix of Data Foundation products (Collect, Track, Export) and analysis products
+    (Testing, MMM, Journey). No list price, no published quota, no published overage.
+  url: https://www.rockerbox.com/plans
+  pricing:
+    model: custom
+    amount: null
+    currency: null
+    period: null
+    published: false
+  quota: null
+  overage: null
+  limits: null
+  cta: Talk to an Expert
+  cta_url: https://www.rockerbox.com/schedule-demo
+  features:
+  - 'Collect: unified, standardized, transformed marketing performance dataset'
+  - 'Track: first-party data tracking'
+  - 'Export: data into Google Sheets, a data warehouse, or elsewhere'
+  - 'Testing: fully managed incrementality testing'
+  - 'MMM: Marketing Mix Modeling for budget allocation'
+  - 'Journey: full customer-journey and touchpoint view'
+paid_add_ons:
+- name: Data warehouse integration
+  description: >-
+    Warehouse sharing to Snowflake, BigQuery or Redshift is explicitly a paid add-on feature, enabled
+    by a Rockerbox representative — step 1 of the published quickstart.
+  price: null
+  source: https://data-foundation.rockerbox.com/warehousing/quickstart
+- name: Professional services
+  url: https://www.rockerbox.com/professional-services
+  price: null
+x-evidence:
+- {url: 'https://www.rockerbox.com/plans', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://www.rockerbox.com/signup-free', http_status: 200, effective_url: 'https://www.rockerbox.com/demo', fetched: '2026-08-13'}
+- {url: 'https://www.rockerbox.com/rockerbox-starter', http_status: 200, effective_url: 'https://www.rockerbox.com/product', fetched: '2026-08-13'}
+- {url: 'https://data-foundation.rockerbox.com/warehousing/quickstart.md', http_status: 200, fetched: '2026-08-13'}

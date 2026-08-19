@@ -1,0 +1,108 @@
+generated: '2026-08-13'
+method: searched
+source: https://help.rockerbox.com/category/enoswvfeqo-setup-and-technical-documentation
+description: >-
+  Cross-cutting request/response semantics for the Rockerbox ingestion surface, read from the
+  provider's own documentation. Rockerbox publishes no OpenAPI, so nothing here is derived from a
+  spec — every entry cites the docs page that states it. Where a convention is genuinely undocumented
+  it is recorded as undocumented rather than guessed.
+authentication:
+  style: tenant identifier in query string
+  detail: '?advertiser=<Advertiser ID>, issued by a Rockerbox account manager'
+  see: authentication/rockerbox-authentication.yml
+idempotency:
+  supported: true
+  mechanism: configurable conversion key (server-side deduplication)
+  header: null
+  header_note: >-
+    There is NO per-request Idempotency-Key header. Rockerbox implements idempotency as an
+    ACCOUNT-CONFIGURED conversion key rather than a per-call token — a different shape from the
+    Stripe-style header, but a real and documented idempotency contract for the write surface.
+  key_configuration: 'Settings -> Conversions -> Edit -> Setup Options'
+  key_examples:
+  - order_id
+  - 'email,date,action'
+  - 'uid,date,action'
+  default_key: >-
+    uid,date,action — the documented default for upper-funnel events that carry no identifying
+    information such as email or external_id.
+  scope: per conversion event definition, per advertiser
+  window: >-
+    Same-day by default. "Enable Cross-Day Deduplication" extends the window across days.
+  conflict_resolution: first-write-wins
+  conflict_detail: >-
+    "If a conversion is deduplicated, the conversion data received earlier will take precedent and
+    the more recent conversion will be deduplicated (ignored)."
+  covers:
+  - Repeated pixel fires for a pixel-based conversion event (e.g. a confirmation-page refresh)
+  - A webhook payload that includes the same conversion event more than once
+  - The same order delivered in a batch file more than once
+  failure_mode: >-
+    Documented footgun: if the conversion key names a field that is not actually passed on the pixel
+    fire or webhook body, everything deduplicates and no conversions are counted at all.
+  source: https://help.rockerbox.com/article/jed1tvweuj-deduplicating-conversions
+batching:
+  supported: false
+  detail: >-
+    "Only one event / conversion should be included per POST request to Rockerbox." Multi-event
+    payloads are not supported on the real-time endpoint. High-volume delivery is handled by the
+    separate batch-file path.
+  batch_alternative: https://help.rockerbox.com/article/xfnhuyc3bw-conversions-batch-files
+  batch_mode_flag: >-
+    When events are sent in bursts rather than in real time, each request must carry `timestamp` as an
+    epoch UTC timestamp of the transaction (e.g. "timestamp":"1535147451").
+content_negotiation:
+  request_content_type: application/json
+  strict: true
+  detail: 'Webhooks must be delivered as valid JSON — Rockerbox cannot ingest XML or other formats.'
+pagination:
+  documented: false
+  note: >-
+    No read API is published, so there is no pagination contract. Bulk reads happen through warehouse
+    shares and scheduled/ad-hoc exports, not through paged HTTP responses.
+field_expansion:
+  documented: false
+metadata:
+  supported: true
+  detail: >-
+    Arbitrary additional parameters may be attached to any ingestion payload — "You can include as
+    many additional parameters as you'd like. Just make sure it's proper JSON." Custom fields flow
+    through to the warehouse datasets.
+  predefined_optional_fields: [revenue, order_id, conversion_source, in_store, salesforce, phone]
+request_tracing:
+  documented: false
+  note: No request-id / correlation header is documented on the ingestion endpoint.
+versioning:
+  scheme: none-in-transport
+  detail: >-
+    The ingestion endpoint carries no version segment (/webhook/data). Versioning is expressed
+    instead at the DATA layer — warehouse schema changes are announced as dated migrations. See
+    lifecycle/rockerbox-lifecycle.yml.
+error_envelope:
+  documented: false
+  note: >-
+    No error catalogue, status-code table or error envelope is published for the ingestion endpoint,
+    so no errors/ artifact is emitted. An honest gap, not an omission by this pipeline.
+rate_limit_signaling:
+  documented: false
+  see: rate-limits/rockerbox-rate-limits.yml
+identity_matching:
+  requirement: >-
+    Server-side events must be paired with an Identify Pixel carrying user data whenever the user is
+    authenticated onsite; Rockerbox requires it to join webhook events to onsite activity.
+  identifiers: [email, customer_id, external_id, uid]
+  source: https://help.rockerbox.com/article/opr65u0v3j-identify-calls
+custom_tracking_domain:
+  supported: true
+  mechanism: CNAME
+  detail: Customers may serve Rockerbox tracking from their own subdomain via a CNAME integration.
+  source: https://help.rockerbox.com/article/iel8eh361t-cname-integration
+cross_links:
+  authentication: authentication/rockerbox-authentication.yml
+  webhooks: asyncapi/rockerbox-webhooks.yml
+  lifecycle: lifecycle/rockerbox-lifecycle.yml
+  data_model: data-model/rockerbox-data-model.yml
+  rate_limits: rate-limits/rockerbox-rate-limits.yml
+x-evidence:
+- {url: 'https://help.rockerbox.com/article/5t050dmcxv-webhooks', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://help.rockerbox.com/article/jed1tvweuj-deduplicating-conversions', http_status: 200, fetched: '2026-08-13'}

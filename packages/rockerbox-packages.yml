@@ -1,0 +1,69 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, rubygems.org, crates.io, packagist.org, proxy.golang.org,
+  api.github.com/orgs/rockerbox
+description: >-
+  Rockerbox ships NO first-party client library in any public package registry. Every registry below
+  was queried unauthenticated and the result recorded. The single package that carries the Rockerbox
+  name is a THIRD-PARTY Segment integration, authored and published by Segment, last released in
+  2021 — recorded with official:false and its real version and date so the decay is visible as data
+  rather than buried in prose. No `SDKs` pointer is emitted in apis.yml, because there is no SDK.
+official_package_count: 0
+packages:
+- language: javascript
+  registry: npm
+  name: '@segment/analytics.js-integration-rockerbox'
+  url: https://www.npmjs.com/package/@segment/analytics.js-integration-rockerbox
+  install: npm install @segment/analytics.js-integration-rockerbox
+  official: false
+  publisher: Segment
+  publisher_email: friends@segment.com
+  repository: https://github.com/segmentio/analytics.js-integrations
+  version: 2.0.2
+  published: '2021-08-02'
+  description: The Rockerbox analytics.js integration.
+  note: >-
+    Third-party. Written and maintained by Segment as part of its analytics.js integrations monorepo,
+    not by Rockerbox. Last published 2021-08-02 — roughly five years stale as of this pass, and it
+    predates the Data Foundation warehouse product entirely. Rockerbox's own Segment documentation
+    (help.rockerbox.com/article/83c4szsuov-segment) describes configuring the destination in Segment,
+    not installing this package.
+registries_checked:
+- {registry: npm, query: rockerbox, first_party_results: 0, note: 'One third-party result, recorded above.'}
+- {registry: pypi, packages_probed: [rockerbox, rockerbox-sdk, rockerbox-api, pyrockerbox], results: 0, http_status: 404}
+- {registry: rubygems, query: rockerbox, results: 0}
+- {registry: crates.io, query: rockerbox, results: 0}
+- {registry: packagist, query: rockerbox, first_party_results: 0, note: 'Only an unrelated "rockerox/timecircles" jQuery plugin (different spelling, different author).'}
+- {registry: 'proxy.golang.org', path: 'github.com/rockerbox/', http_status: 404}
+- {registry: 'Maven Central / NuGet', results: 0, note: 'No JVM or .NET client documented or advertised anywhere in the Rockerbox docs.'}
+distribution_without_a_registry:
+  description: >-
+    Rockerbox's client-side code is distributed as a hosted tag, not as a package. There is no
+    registry metadata endpoint to query for it and the loader URL is not version-pinned, so a
+    consumer cannot tell which build they are running either — that unpinning IS the finding.
+  entries:
+  - name: Rockerbox tracking pixel / onsite tag
+    registry: cdn
+    version: null
+    published: null
+    note: >-
+      Distributed as a hosted script tag (also available as a Google Tag Manager template and a
+      Segment destination) rather than as an npm package. The documented loader URL carries no
+      version segment, so it floats to whatever Rockerbox currently serves.
+    docs: https://help.rockerbox.com/article/si4cfxzljs-pixel-async
+  - name: Google Tag Manager template
+    registry: gtm-template-gallery
+    version: null
+    published: null
+    note: Rockerbox publishes a GTM template; the gallery exposes no version metadata endpoint to read.
+    docs: https://help.rockerbox.com/article/p4wkik0a42-gtm-template
+github_organization:
+  url: https://github.com/rockerbox
+  verified: true
+  public_repos: 0
+  note: >-
+    The org is GitHub-verified and its blog field points at rockerbox.com, so it is genuinely the
+    marketing-attribution Rockerbox — but it publishes zero public repositories, so there is no
+    source-code or SDK surface to harvest there.
+  probed: '2026-08-13'

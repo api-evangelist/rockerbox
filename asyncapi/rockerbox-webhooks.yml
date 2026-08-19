@@ -1,0 +1,112 @@
+generated: '2026-08-13'
+method: searched
+source: https://help.rockerbox.com/article/5t050dmcxv-webhooks
+spec_type: null
+spec_type_note: >-
+  Rockerbox publishes NO AsyncAPI document. /asyncapi.yaml, /asyncapi.json and the GitHub org
+  (github.com/rockerbox, 0 public repos) were all checked. What Rockerbox does publish is a
+  documented server-side webhook INGESTION surface — the direction is inbound (the customer POSTs
+  conversion and marketing events TO Rockerbox), not outbound event delivery. Captured here as a
+  webhook catalog rather than fabricated as an AsyncAPI.
+direction: inbound
+description: >-
+  Rockerbox's server-side integration accepts real-time conversion and marketing events over HTTP
+  POST. It is the non-pixel path into the Rockerbox data foundation, used for events that happen off
+  the customer's web property — in-store purchases, back-end funnel events (phone call, package
+  shipped, package returned) and subscription lifecycle events.
+endpoint:
+  url: https://webhooks.getrockerbox.com/webhook/data
+  method: POST
+  content_type: application/json
+  query_parameters:
+  - name: advertiser
+    required: true
+    description: >-
+      Rockerbox Advertiser ID. Not self-service — the docs instruct the customer to request this
+      field from their Rockerbox account manager.
+  documented_form: https://webhooks.getrockerbox.com/webhook/data?advertiser=REPLACE_WITH_ADV_ID
+constraints:
+- One event / conversion per POST request. Batching multiple events into one request is not supported.
+- Payload must be valid JSON. XML and other formats cannot be ingested.
+- >-
+  An Identify Pixel carrying corresponding user data must also be firing whenever a user is
+  authenticated on the site; Rockerbox requires it to match webhook events back to onsite activity.
+events:
+- name: conversion
+  description: >-
+    A conversion event. The `action` field names which configured Rockerbox conversion event the call
+    belongs to.
+  required_fields:
+  - {name: email, type: string, description: Email associated with the user.}
+  - {name: customer_id, type: string, description: The customer's own internal identifier for the user.}
+  - {name: action, type: string, description: Name of the Rockerbox conversion event this call is associated with.}
+  - {name: timestamp, type: string, description: Time of the conversion. Epoch UTC seconds when sent in batch mode.}
+  required_fields_note: >-
+    Depending on the implementation only one of email or customer_id may be needed; the docs
+    recommend sending both when available.
+  optional_predefined_fields:
+  - revenue
+  - order_id
+  - conversion_source
+  - in_store
+  - salesforce
+  - phone
+  extensible: true
+  extensible_note: Any number of additional custom parameters may be included as long as the body stays valid JSON.
+- name: marketing event
+  description: >-
+    A marketing touchpoint delivered server-side rather than via the tracking pixel, carrying platform
+    campaign identifiers.
+  documented_example_fields: [user_id, timestamp, ad_campaignid, ad_adgroupid, ad_creativeid]
+examples:
+- name: Marketing event with epoch timestamp
+  source: https://help.rockerbox.com/article/5t050dmcxv-webhooks
+  payload:
+    user_id: ce395cc1-9f1f-4fe1-a8a0-a279a8c33ab4
+    timestamp: '1535147451'
+    ad_campaignid: '1035987215'
+    ad_adgroupid: '2358097292'
+    ad_creativeid: '88902099811'
+- name: Subscription order conversion
+  source: https://help.rockerbox.com/article/5t050dmcxv-webhooks
+  payload:
+    email: hello@rockerbox.com
+    timestamp: '1535147451'
+    order_id: PRCH11809871
+    revenue: '27.50'
+    order_type: subscription_start
+    order_timestamp: '2023-05-05 23:24:11.695'
+batch_mode:
+  supported: true
+  description: >-
+    Where real-time delivery is not possible, multiple events may be sent in succession; each request
+    must carry `timestamp` as an epoch UTC timestamp of the transaction.
+  example: '"timestamp":"1535147451"'
+deduplication:
+  see: conventions/rockerbox-conventions.yml
+  summary: >-
+    Repeated delivery of the same event — a webhook payload including the same conversion twice, a
+    batch file re-delivering the same order, or a pixel double-fire — is collapsed on a
+    customer-configured conversion key. Earlier data wins; the later duplicate is ignored.
+related_ingestion_surfaces:
+- name: Conversion pixel (onsite)
+  docs: https://help.rockerbox.com/article/3y00yy5zaq-site-direct-conversion-pixels
+- name: Identify pixel
+  docs: https://help.rockerbox.com/article/opr65u0v3j-identify-calls
+- name: Conversions batch files
+  docs: https://help.rockerbox.com/article/xfnhuyc3bw-conversions-batch-files
+- name: Spend batch files
+  docs: https://help.rockerbox.com/article/9r51o37e2s-spend-batch
+outbound_events:
+  published: false
+  note: >-
+    No outbound webhook / event-subscription surface is documented. Rockerbox delivers results the
+    other way: scheduled reports, ad hoc exports, and warehouse shares (Snowflake / BigQuery /
+    Redshift). See data-model/rockerbox-data-model.yml.
+x-evidence:
+- url: https://help.rockerbox.com/article/5t050dmcxv-webhooks
+  http_status: 200
+  fetched: '2026-08-13'
+- url: https://help.rockerbox.com/article/jed1tvweuj-deduplicating-conversions
+  http_status: 200
+  fetched: '2026-08-13'

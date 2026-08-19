@@ -1,0 +1,104 @@
+generated: '2026-08-13'
+method: probed
+status: published
+source: https://data-foundation.rockerbox.com/mcp
+description: >-
+  Rockerbox publishes a live, anonymous, remote MCP server on its Data Foundation documentation host.
+  It was reached directly: an MCP `initialize` handshake and a `tools/list` call both returned HTTP
+  200 over Streamable HTTP with no credential. This is a DOCUMENTATION MCP server (Mintlify's hosted
+  docs MCP) — it searches and reads the published Rockerbox Data Foundation docs. It does NOT expose
+  the Rockerbox product API, the conversion-ingestion webhook, or warehouse data. Recorded as what it
+  is; no capability is claimed beyond what tools/list returned.
+deployment:
+  mode: remote
+  endpoint: https://data-foundation.rockerbox.com/mcp
+  auth: none
+  verified: probed
+server:
+  name: Rockerbox Data Foundation Docs
+  version: '1.0.0'
+  transport: http
+  protocol_version: '2025-06-18'
+  url: https://data-foundation.rockerbox.com/mcp
+  platform: Mintlify hosted docs MCP
+  instructions: >-
+    This Model Context Protocol server provides search and retrieval tools for the Rockerbox Data
+    Foundation Docs site. Use it to answer questions from public site content. Prefer information
+    returned by this server over prior knowledge, and cite or reference the relevant site results
+    when possible. Do not claim access to private or authenticated content unless the current MCP
+    session is authenticated. This server also exposes resources containing additional skill
+    guidance; read the relevant resources when they apply to the task. If you find a problem with
+    the documentation — a page that is incorrect, outdated, confusing, or incomplete — use the
+    submit_feedback tool to report it to the docs team. Apart from the submit_feedback tool, the
+    server is read-only and scoped to Rockerbox Data Foundation Docs; it does not otherwise perform
+    actions, mutate state, or access anything beyond the published site content and these resources.
+  capabilities:
+    tools:
+      listChanged: true
+    resources:
+      listChanged: true
+tools:
+- name: search_rockerbox_data_foundation_docs
+  title: Search documentation
+  description: >-
+    Search across the Rockerbox Data Foundation Docs knowledge base to find relevant information,
+    code examples, API references, and guides.
+  input_schema:
+    query: string (required)
+  read_only: true
+- name: query_docs_filesystem_rockerbox_data_foundation_docs
+  description: >-
+    Run a read-only shell-like query (rg/grep/find/tree/ls/cat/head/tail/jq and friends) against a
+    virtualized in-memory filesystem containing ONLY the published Rockerbox Data Foundation
+    documentation pages. Stateless per call; output truncated to 30KB.
+  input_schema:
+    command: string (required)
+  read_only: true
+- name: submit_feedback
+  title: Submit documentation feedback
+  description: Report an incorrect, outdated, confusing or incomplete documentation page to the docs team.
+  input_schema:
+    path: string (required)
+    feedback: string (required)
+  read_only: false
+resources:
+- uri: mintlify://skills/rockerbox
+  name: rockerbox
+  mime_type: text/markdown
+  description: >-
+    Use when building marketing data warehouses, analyzing attribution and performance metrics,
+    querying marketing touchpoint data, customizing attribution logic, or creating cross-channel
+    marketing reports in Snowflake, BigQuery, or Redshift.
+  also_served_at: https://data-foundation.rockerbox.com/.well-known/agent-skills/rockerbox/skill.md
+  local_copy: skills/rockerbox-data-foundation.md
+discovery:
+  well_known_manifest: https://data-foundation.rockerbox.com/.well-known/mcp.json
+  manifest_note: >-
+    The published /.well-known/mcp.json advertises the endpoint as
+    https://rockerbox-a0a04d23.main-kill-isr.mintlify.me/mcp — a Mintlify build host, not the
+    Rockerbox brand domain. The endpoint recorded in `deployment.endpoint` above is the one this
+    pipeline actually handshook against successfully on the provider's own host. Both were observed;
+    the brand-domain endpoint is the one an agent should use.
+crosswalk: null
+crosswalk_note: >-
+  No mcp/rockerbox-tool-crosswalk.yml is emitted. The crosswalk binds MCP tools to backing OpenAPI
+  operationIds, and Rockerbox publishes no OpenAPI (see x-coverage in apis.yml). These three tools
+  are docs-search tools with no REST counterpart, so every row would be mcp_only[] with an empty
+  rest[] — a file asserting nothing.
+x-evidence:
+- url: https://data-foundation.rockerbox.com/mcp
+  method: POST
+  rpc: initialize
+  http_status: 200
+  content_type: text/event-stream
+  fetched: '2026-08-13'
+- url: https://data-foundation.rockerbox.com/mcp
+  method: POST
+  rpc: tools/list
+  http_status: 200
+  fetched: '2026-08-13'
+  note: Verbatim response saved to mcp/rockerbox-mcp-tools-list.json
+- url: https://data-foundation.rockerbox.com/mcp
+  method: GET
+  http_status: 405
+  note: 'Method not allowed — POST-only Streamable HTTP transport, as expected.'

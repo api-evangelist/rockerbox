@@ -1,0 +1,45 @@
+# Rockerbox Data Foundation Docs
+
+## Docs
+
+- [Introduction](https://data-foundation.rockerbox.com/overview.md): Leveraging Rockerbox as your marketing data foundation
+- [Creating Your Data Foundation](https://data-foundation.rockerbox.com/why-rockerbox.md): Leveraging Rockerbox as your marketing data foundation
+- [How Rockerbox Helps](https://data-foundation.rockerbox.com/approach.md): Understanding our approach to collecting your data
+- [Measuring Performance](https://data-foundation.rockerbox.com/motivation/measuring-performance.md): Rockerbox helps map your marketing investment to business performance
+- [Data Completeness](https://data-foundation.rockerbox.com/motivation/completeness.md): Integrations help assemble your marketing data foundation
+- [Operational Efficiency](https://data-foundation.rockerbox.com/motivation/efficiency.md): Integrations are designed to create operational efficiency
+- [Standardization](https://data-foundation.rockerbox.com/motivation/standardization.md): How integrations standardize data
+- [Overview](https://data-foundation.rockerbox.com/warehousing-overview/overview.md): Learn how Rockerbox integrates with your data warehouse to serve as your marketing data foundation
+- [Supported Warehouses](https://data-foundation.rockerbox.com/warehousing-overview/platforms.md): Learn about the platforms supported for data warehouse integration
+- [Use Cases](https://data-foundation.rockerbox.com/warehousing-overview/use-cases.md): Learn about analysis use cases supported by data warehouse integrations
+- [The Trade Desk](https://data-foundation.rockerbox.com/supported-integrations/marketing/dsp/the-trade-desk.md): Learn how to set up The Trade Desk spend API integration with Rockerbox
+- [Getting Started](https://data-foundation.rockerbox.com/warehousing/quickstart.md)
+- [Connect to Snowflake](https://data-foundation.rockerbox.com/warehousing/snowflake.md): Setup guide to share Rockerbox schemas with your Snowflake account.
+- [Connect to Google BigQuery](https://data-foundation.rockerbox.com/warehousing/bigquery.md): Setup guide to share Rockerbox schemas with your BigQuery project.
+- [Connect to Amazon Redshift](https://data-foundation.rockerbox.com/warehousing/redshift.md): Setup guide to share Rockerbox schemas with your Redshift instance.
+- [Snowflake Reader Account](https://data-foundation.rockerbox.com/warehousing/snowflake-reader.md): Setup your reader account for egress.
+- [Schema Overview](https://data-foundation.rockerbox.com/warehousing/schemas.md): Learn about the datasets available for data warehouse integration
+- [Log Conversions](https://data-foundation.rockerbox.com/warehousing/schema-log-conversion.md)
+- [Clickstream](https://data-foundation.rockerbox.com/warehousing/schema-clickstream.md)
+- [Clickstream Event Parameters](https://data-foundation.rockerbox.com/warehousing/schema-clickstream-events.md)
+- [Log MTA](https://data-foundation.rockerbox.com/warehousing/schema-log-mta.md)
+- [Aggregate MTA](https://data-foundation.rockerbox.com/warehousing/schema-aggregate-mta.md)
+- [Platform - Google](https://data-foundation.rockerbox.com/warehousing/schema-platform-google.md)
+- [Platform - Facebook](https://data-foundation.rockerbox.com/warehousing/schema-platform-facebook.md)
+- [Platform - TikTok](https://data-foundation.rockerbox.com/warehousing/schema-platform-tiktok.md)
+- [Platform - Bing](https://data-foundation.rockerbox.com/warehousing/schema-platform-bing.md)
+- [Platform - Snapchat](https://data-foundation.rockerbox.com/warehousing/schema-platform-snapchat.md)
+- [Platform - Pinterest](https://data-foundation.rockerbox.com/warehousing/schema-platform-pinterest.md)
+- [Platform - LinkedIn](https://data-foundation.rockerbox.com/warehousing/schema-platform-linkedin.md)
+- [Taxonomy Lookup](https://data-foundation.rockerbox.com/warehousing/schema-taxonomy-lookup.md)
+- [Use Cases Overview](https://data-foundation.rockerbox.com/warehousing/analytics-overview.md): Common analytics workflows using Rockerbox data in your warehouse.
+- [Replicate Cross-Channel Attribution Report](https://data-foundation.rockerbox.com/warehousing/analytics-replicate-cross-channel-ui-report.md): Recreate the Rockerbox Cross-Channel Attribution report in your warehouse to analyze spend, conversions, CPA, and ROAS across marketing placements.
+- [Build CPA/ROAS From Log Level MTA](https://data-foundation.rockerbox.com/warehousing/analytics-kpis-from-log-mta.md): Customize attribution logic in the log-level MTA dataset and rebuild aggregate marketing performance reporting such as CPA and ROAS.
+- [Customize Attribution Windows](https://data-foundation.rockerbox.com/warehousing/analytics-customize-attribution-windows.md): Apply custom attribution window filters to the log-level MTA dataset and rebuild attribution credit across remaining touchpoints.
+- [Evaluate Meta Click vs. View Through Attribution](https://data-foundation.rockerbox.com/warehousing/analytics-mta-eval-clicks-views.md): This page provides an overview of how to evaluate the impact of view and clicks on Meta attribution.
+- [Time to Conversion](https://data-foundation.rockerbox.com/warehousing/analytics-time-to-convert.md): This guide explains how to compute **time to conversion** using the **Log Level MTA** dataset.
+- [Enrich Attribution with Platform Data](https://data-foundation.rockerbox.com/warehousing/analytics-join-attribution-platform-data.md): Combine Rockerbox aggregate attribution metrics with platform-reported performance metrics.
+- [Session, Visitor, or Traffic Analysis](https://data-foundation.rockerbox.com/warehousing/analytics-site-traffic.md): Analyze how marketing channels drive site traffic, sessions, and user engagement using the Clickstream dataset.
+- [Product Breakdowns](https://data-foundation.rockerbox.com/warehousing/analytics-product-breakdowns.md): Extract product-level context stored in the conversions dataset to support product-level performance and revenue analysis.
+- [Aggregate MTA Migration](https://data-foundation.rockerbox.com/warehousing/aggregate-mta-migration-guide.md)
+- [Aggregate MTA: Partition Column Removal](https://data-foundation.rockerbox.com/warehousing/aggregate-mta-partition-migration.md)

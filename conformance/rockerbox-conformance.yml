@@ -1,0 +1,98 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.rockerbox.com/faq/how-does-rockerbox-provide-secure-marketing-measurement
+description: >-
+  Cross-cutting standards conformance for Rockerbox. Rockerbox publishes no OpenAPI, no OAuth/OIDC
+  discovery and no RFC 9457 error envelope, so most of the usual API standards resolve to
+  conforms:false with the probe that established it. Where Rockerbox DOES publish a compliance
+  posture — SOC 2, and a privacy programme covering GDPR/CCPA/CPRA and Privacy Shield — it is
+  recorded with the page that states it. Nothing is asserted that a probe or a provider page did not
+  establish.
+standards:
+- id: soc2
+  conforms: true
+  evidence: >-
+    "Rockerbox adheres to SOC2 standards, which are rigorous criteria for managing customer data
+    based on five trust service principles — security, availability, processing integrity,
+    confidentiality, and privacy."
+  source: https://www.rockerbox.com/faq/how-does-rockerbox-provide-secure-marketing-measurement
+  caveat: >-
+    A published claim, not a verified report. No trust centre, no attestation date, no auditor named,
+    and no Type I / Type II distinction is given. Rockerbox does not operate a trust portal.
+- id: gdpr
+  conforms: true
+  evidence: Dedicated GDPR guidance plus a privacy policy naming privacy@rockerbox.com as the data contact.
+  source: https://help.rockerbox.com/article/38eojazpyn-gdpr
+- id: ccpa-cpra
+  conforms: true
+  evidence: Privacy (GDPR, CCPA, CPRA) documentation and a documented data retrieval/deletion process.
+  source: https://help.rockerbox.com/article/z61hegm7yg-data-retrieval-deletion
+- id: privacy-shield
+  conforms: true
+  evidence: Rockerbox maintains a Privacy Shield page on its own site.
+  source: https://www.rockerbox.com/privacy-shield
+  caveat: The EU-US Privacy Shield framework was invalidated in 2020; the page is recorded as published, not as currently sufficient.
+- id: content-signals
+  conforms: true
+  evidence: >-
+    data-foundation.rockerbox.com/robots.txt publishes "Content-Signal: ai-train=yes, search=yes,
+    ai-input=yes" — an explicit machine-readable AI-usage grant.
+  source: https://data-foundation.rockerbox.com/robots.txt
+- id: mcp
+  conforms: true
+  evidence: >-
+    Live remote MCP server at https://data-foundation.rockerbox.com/mcp; initialize returned
+    protocolVersion 2025-06-18 over Streamable HTTP, anonymous.
+  source: mcp/rockerbox-mcp.yml
+- id: a2a
+  conforms: partial
+  evidence: >-
+    An A2A Agent Card is served at /.well-known/agent-card.json on the docs host, but it is graded
+    FLAVORED against A2A 1.0.0 — it uses supportedInterfaces rather than additionalInterfaces and
+    declares protocolVersion 0.3.
+  source: a2a/rockerbox-a2a.yml
+- id: llmstxt
+  conforms: true
+  evidence: https://data-foundation.rockerbox.com/llms.txt returns HTTP 200 text/plain with a full page index.
+  source: llms/rockerbox-llms.txt
+- id: agent-skills
+  conforms: true
+  evidence: >-
+    Provider-published Agent Skill served at
+    /.well-known/agent-skills/rockerbox/skill.md and advertised from both the agent card and the MCP
+    server's resource list.
+  source: skills/_index.yml
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document found. Probed /openapi.json, /openapi.yaml, /swagger.json,
+    /v1/openapi.json, /api-docs, /docs and /redoc on every Rockerbox host, and enumerated the docs
+    filesystem through the provider's own MCP server (`find / -iname '*openapi*'` returned nothing).
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document published. The event surface is inbound webhook ingestion; captured in asyncapi/rockerbox-webhooks.yml.
+- id: graphql
+  conforms: false
+  evidence: No /graphql surface found on any Rockerbox host.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 anywhere. /.well-known/oauth-authorization-server and /.well-known/oauth-protected-resource
+    404 on every host. Ingestion authenticates with a tenant identifier in the query string.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every Rockerbox host.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No error catalogue or problem+json envelope is documented.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 (or a soft-200 non-document) on every Rockerbox host.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset/Deprecation header support documented; deprecations are announced as dated schema-migration pages.
+x-evidence:
+- {url: 'https://www.rockerbox.com/faq/how-does-rockerbox-provide-secure-marketing-measurement', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://www.rockerbox.com/privacy', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://www.rockerbox.com/privacy-shield', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://data-foundation.rockerbox.com/robots.txt', http_status: 200, fetched: '2026-08-13'}

@@ -1,0 +1,83 @@
+generated: '2026-08-13'
+method: searched
+source: https://data-foundation.rockerbox.com/warehousing/aggregate-mta-partition-migration
+description: >-
+  Rockerbox has no HTTP API version to deprecate — its contract is the warehouse schema. Lifecycle is
+  therefore managed at the DATA layer, and Rockerbox does publish it there: dated, breaking schema
+  changes with a required-action date, a stated impact, and a before/after migration table. That is a
+  real deprecation communication and it is recorded as such. What Rockerbox does NOT publish is a
+  standing deprecation POLICY, an SLA, or a public status page — each recorded honestly below.
+versioning:
+  scheme: schema-migration
+  transport_version: null
+  transport_note: >-
+    The ingestion endpoint https://webhooks.getrockerbox.com/webhook/data carries no version segment
+    and no version header is documented.
+  data_version_note: >-
+    Breaking changes are versioned as named, dated dataset migrations rather than as API versions.
+  docs: https://data-foundation.rockerbox.com/warehousing/schemas
+deprecation:
+  policy_url: null
+  policy_published: false
+  policy_note: >-
+    No standing deprecation policy, no stated notice period, no RFC 8594 Sunset/Deprecation header
+    support. What exists is per-change notices, published with dates and required actions.
+  sunset_header: false
+  notices:
+  - id: aggregate-mta-partition-removal
+    title: 'Aggregate MTA: Partition Column Removal'
+    url: https://data-foundation.rockerbox.com/warehousing/aggregate-mta-partition-migration
+    breaking: true
+    action_required_by: '2026-04-13'
+    effective: '2026-04-13'
+    affected: aggregate_mta.partition
+    impact: >-
+      Queries referencing aggregate_mta.partition fail after the effective date. Queries that do not
+      reference it are unaffected.
+    rationale: Improves data sync performance during long backfills.
+    migration:
+    - "Remove `partition` from SELECT statements."
+    - "Avoid SELECT * — use an explicit column list so future schema changes do not break queries."
+    - "Replace WHERE partition = 'mta' with WHERE even > 0."
+    - "Replace WHERE partition = 'included_spend' with WHERE included_spend > 0."
+  - id: aggregate-mta-migration
+    title: Aggregate MTA Migration Guide
+    url: https://data-foundation.rockerbox.com/warehousing/aggregate-mta-migration-guide
+    breaking: true
+    affected: legacy Buckets Breakdown tables
+    impact: >-
+      Legacy Buckets Breakdown tables are superseded by aggregate_mta; the guide supplies view
+      templates for the conversion.
+status_page:
+  url: null
+  published: false
+  probe_notes:
+  - 'https://status.rockerbox.com/ => HTTP 200 but the body is a 43-byte 1x1 GIF (the tracking-pixel wildcard), not a status page.'
+  - 'https://rockerbox.statuspage.io => HTTP 200 redirecting to /inactive — the Statuspage account is not active.'
+  in_product_alternative:
+    name: Data Status Report
+    description: >-
+      Rockerbox ships real-time data-status visibility INSIDE the dashboard rather than as a public
+      status page. It reports pipeline/data freshness to logged-in customers only.
+    announced: '2024-08-16'
+    url: https://www.rockerbox.com/blog/introducing-rockerbox-data-status-reporting-your-gateway-to-real-time-data-visibility
+sla:
+  url: null
+  published: false
+  note: >-
+    No public uptime target or SLA document. Commercial terms live in the customer contract
+    (https://www.rockerbox.com/website-terms-of-use/ covers website use, not service levels).
+changelog:
+  published: false
+  note: >-
+    No dated product changelog or release-notes feed was found on rockerbox.com,
+    help.rockerbox.com or data-foundation.rockerbox.com. The two migration guides above are the only
+    dated change communications Rockerbox publishes, and they are recorded here rather than being
+    inflated into a changelog/ artifact.
+deprecated_operations: []
+deprecated_operations_note: No OpenAPI exists, so no operation-level deprecation flags can be derived.
+x-evidence:
+- {url: 'https://data-foundation.rockerbox.com/warehousing/aggregate-mta-partition-migration.md', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://status.rockerbox.com/', http_status: 200, fetched: '2026-08-13', note: 'body is a 1x1 GIF, not a status page'}
+- {url: 'https://rockerbox.statuspage.io', http_status: 200, fetched: '2026-08-13', note: 'redirects to /inactive'}
+- {url: 'https://www.rockerbox.com/changelog', http_status: 404, fetched: '2026-08-13'}

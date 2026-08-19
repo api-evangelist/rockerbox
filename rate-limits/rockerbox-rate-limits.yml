@@ -1,13 +1,41 @@
 name: Rockerbox Rate Limits
-description: Rockerbox does not publicly document specific API rate limits. The platform provides API spend integrations with major advertising platforms (Google Ads, Facebook, TikTok, Pinterest, LinkedIn, Snapchat, Bing, Criteo, and others) and a REST API for querying attribution data. Rate limit policies are likely communicated to customers as part of contract agreements. Contact Rockerbox support for specific rate limit details applicable to your account.
+generated: '2026-08-13'
+method: searched
+source: https://help.rockerbox.com/category/enoswvfeqo-setup-and-technical-documentation
 specificationVersion: '0.1'
-rateLimits:
-  - name: API Rate Limits
-    description: Specific rate limit thresholds are not publicly documented by Rockerbox. Limits are presumed to be negotiated or disclosed as part of enterprise contracts.
-    scope: account
-    notes: For rate limit details, contact Rockerbox support through the help portal at help.rockerbox.com or via your account representative.
-    references:
-      - name: API Integrations Documentation
-        url: https://help.rockerbox.com/category/wcd840uzni-api-integrations
-      - name: Setup and Technical Documentation
-        url: https://help.rockerbox.com/category/enoswvfeqo-setup-and-technical-documentation
+limit_count: 0
+description: >-
+  Rockerbox publishes no rate limits. The entire Setup and Technical Documentation tree, the webhook
+  ingestion reference, and the Data Foundation docs site (searched through the provider's own MCP
+  server) contain no numeric limit, no window, no burst allowance, no throttling status code, and no
+  rate-limit response header. An honest zero: this is a documented absence, not an unexamined gap.
+rateLimits: []
+response_headers:
+  documented: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header is documented on any Rockerbox surface, so an
+    agent has no runtime signal to back off on. The only documented throughput constraint is
+    structural rather than numeric — the ingestion endpoint accepts exactly one conversion per POST
+    ("Only one event / conversion should be included per POST request to Rockerbox"), which forces
+    one request per event rather than capping requests per unit time.
+exhaustion_status_code: null
+structural_constraints:
+- surface: https://webhooks.getrockerbox.com/webhook/data
+  constraint: One event / conversion per POST request.
+  source: https://help.rockerbox.com/article/5t050dmcxv-webhooks
+- surface: Data Foundation docs MCP server
+  constraint: Tool output truncated to 30KB per call (a payload cap, not a rate limit).
+  source: mcp/rockerbox-mcp.yml
+- surface: Snowflake Reader Account
+  constraint: >-
+    Rockerbox applies a monthly credit limit on provisioned reader accounts to cover egress costs. A
+    consumption ceiling on the warehouse egress path; no figure is published.
+  source: https://data-foundation.rockerbox.com/warehousing/snowflake-reader
+where_to_ask:
+- name: Rockerbox Support
+  url: https://help.rockerbox.com/article/ocjyw3jty7-rockerbox-support
+- name: Contact Rockerbox
+  url: https://www.rockerbox.com/contact-us
+x-evidence:
+- {url: 'https://help.rockerbox.com/article/5t050dmcxv-webhooks', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://data-foundation.rockerbox.com/mcp', http_status: 200, fetched: '2026-08-13', note: 'searched the full docs corpus for rate-limit language; no numeric limit published'}

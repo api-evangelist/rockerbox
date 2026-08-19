@@ -1,0 +1,61 @@
+generated: '2026-08-13'
+method: probed
+source: https://data-foundation.rockerbox.com/.well-known/agent-card.json
+description: >-
+  A2A Agent Card observed at /.well-known/agent-card.json on data-foundation.rockerbox.com, the
+  Rockerbox Data Foundation documentation host. Grade is measured against the A2A 1.0.0 AgentCard
+  object: 'conformant' passes every structural check, 'near-conformant' is correctly shaped but
+  omits optional fields, 'flavored' fails a hard check or carries a non-spec interface field.
+  Provider-published by construction — served from a Rockerbox-controlled host; nothing here is
+  derived or generated.
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: data-foundation.rockerbox.com
+  notes: >-
+    Probed on every Rockerbox host. www.rockerbox.com and help.rockerbox.com return 404 for both
+    /.well-known/agent-card.json and the legacy /.well-known/agent.json. app.rockerbox.com answers
+    HTTP 200 with the same 1,325-byte SPA HTML shell for every /.well-known/* path (soft-404, not a
+    document) and webhooks.getrockerbox.com answers HTTP 200 with the literal body "{}" for every
+    /.well-known/* path (empty catch-all, not a document) — both rejected. Only
+    data-foundation.rockerbox.com serves a real card, and it is emitted by the docs platform
+    (Mintlify) rather than by a Rockerbox API: the card's url, provider.url and documentationUrl all
+    point back at https://data-foundation.rockerbox.com/, not at an API surface.
+conformance:
+  spec: A2A 1.0.0
+  grade: flavored
+  protocol_version: '0.3'
+  preferred_transport: HTTP+JSON
+  hard_checks:
+    capabilities_is_object: true
+    protocol_version_present: true
+    skills_is_array: true
+  deviations:
+  - supportedInterfaces-instead-of-additionalInterfaces
+  - protocol-version-0.3-pre-1.0
+card:
+  name: Rockerbox Data Foundation Docs
+  url: https://data-foundation.rockerbox.com/
+  version: 1.0.0
+  organization: Rockerbox Data Foundation Docs
+  documentation_url: https://data-foundation.rockerbox.com/
+  capabilities:
+    streaming: false
+    push_notifications: false
+  default_input_modes:
+  - text/plain
+  default_output_modes:
+  - text/plain
+  skills: 1
+  skill_ids:
+  - rockerbox
+  skill_urls:
+  - https://data-foundation.rockerbox.com/.well-known/agent-skills/rockerbox/skill.md
+  file: rockerbox-agent-card.json
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://data-foundation.rockerbox.com/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json
+  content_length: 995
+  note: Verbatim body saved alongside this manifest. No field inferred.

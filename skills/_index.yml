@@ -1,0 +1,30 @@
+generated: '2026-08-13'
+method: searched
+source: https://data-foundation.rockerbox.com/.well-known/agent-skills/rockerbox/skill.md
+description: >-
+  Rockerbox publishes its own Agent Skill at a well-known path on the Data Foundation docs host, and
+  advertises it from both its A2A agent card (skills[0].url) and its MCP server (resource
+  mintlify://skills/rockerbox). The file below is that skill saved VERBATIM — API Evangelist wrote
+  none of it. No additional skills were generated: skills must be grounded in real operationIds and
+  Rockerbox publishes no OpenAPI to ground them in.
+skills:
+- file: rockerbox-data-foundation.md
+  name: Rockerbox
+  description: >-
+    Use when building marketing data warehouses, analyzing attribution and performance metrics,
+    querying marketing touchpoint data, customizing attribution logic, or creating cross-channel
+    marketing reports in Snowflake, BigQuery, or Redshift.
+  provider_published: true
+  source: https://data-foundation.rockerbox.com/.well-known/agent-skills/rockerbox/skill.md
+  api: null
+  api_note: >-
+    Grounded in the published warehouse SCHEMAS (aggregate_mta, log_level_mta, clickstream,
+    conversions, platform_*, taxonomy_lookup), not in HTTP operations — Rockerbox's agent surface is
+    SQL against shared warehouse datasets, not a REST API.
+  operations: []
+  x-evidence:
+    fetched: '2026-08-13'
+    url: https://data-foundation.rockerbox.com/.well-known/agent-skills/rockerbox/skill.md
+    http_status: 200
+    content_type: text/markdown; charset=utf-8
+    content_length: 13976
