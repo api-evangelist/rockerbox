@@ -44,6 +44,17 @@ tags:
   - Marketing Analytics
   - Data Warehousing
   - Conversion Tracking
+  - Webhook
+tags_raw:
+  - Marketing Attribution
+  - Multi-Touch Attribution
+  - Marketing Mix Modeling
+  - Incrementality Testing
+  - Media Spend
+  - Customer Journeys
+  - Marketing Analytics
+  - Data Warehousing
+  - Conversion Tracking
   - Webhooks
 apis:
   - aid: rockerbox:rockerbox-api
@@ -57,6 +68,10 @@ apis:
     humanURL: https://help.rockerbox.com/article/5t050dmcxv-webhooks
     baseURL: https://webhooks.getrockerbox.com
     tags:
+      - Conversion Tracking
+      - Webhook
+      - Marketing Data
+    tags_raw:
       - Conversion Tracking
       - Webhooks
       - Marketing Data
