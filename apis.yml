@@ -11,6 +11,17 @@ description: >-
   Foundation documentation host — an anonymous remote MCP server, an A2A agent card, a
   provider-published Agent Skill, an llms.txt, and an explicit robots.txt Content-Signal grant.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: sales
