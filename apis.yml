@@ -147,8 +147,6 @@ common:
     url: https://www.rockerbox.com/blog
   - type: BlogRSS
     url: https://www.rockerbox.com/blog/rss.xml
-  - type: Blog
-    url: blogs/blogs.json
   - type: Pricing
     url: https://www.rockerbox.com/plans
   - type: Login
