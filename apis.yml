@@ -56,6 +56,8 @@ tags:
   - Data Warehousing
   - Conversion Tracking
   - Webhook
+  - A2A
+  - Attribution
 tags_raw:
   - Marketing Attribution
   - Multi-Touch Attribution
@@ -67,6 +69,8 @@ tags_raw:
   - Data Warehousing
   - Conversion Tracking
   - Webhooks
+  - A2A
+  - Attribution
 apis:
   - aid: rockerbox:rockerbox-api
     name: Rockerbox Conversion & Marketing Event Ingestion
@@ -238,3 +242,10 @@ x-corrections:
       unrelated to rockerbox.com, the New York marketing-attribution platform this repo profiles. The
       contaminated spec was NOT harvested and nothing was derived from it. The corrected entry points
       at the ingestion host Rockerbox's own help centre documents.
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://data-foundation.rockerbox.com/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404
