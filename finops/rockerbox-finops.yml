@@ -1,3 +1,11 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+# Coverage demoted 2026-10-07 (roadmap#942, PLAN.md Stage A): this file was written by an API Evangelist
+# sweep and names no billing unit, meters or pricing category read from the provider — it restates the
+# FinOps framework. It is `x-coverage: unmeasured`, and the FOCUS alignment it claimed has been removed.
+x-coverage: unmeasured
+method: generated
 name: Rockerbox FinOps
 description: FinOps framework alignment for Rockerbox API consumption. Rockerbox operates on custom enterprise contracts with annual or multi-year terms. Cost management centers on contract negotiation, channel scope, and data volume. The platform helps marketing teams optimize media spend across channels, providing direct FinOps value through spend effectiveness analysis and budget forecasting via Marketing Mix Modeling.
 specificationVersion: '1.0'
