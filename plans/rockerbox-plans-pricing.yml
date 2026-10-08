@@ -56,3 +56,16 @@ x-evidence:
 - {url: 'https://www.rockerbox.com/signup-free', http_status: 200, effective_url: 'https://www.rockerbox.com/demo', fetched: '2026-08-13'}
 - {url: 'https://www.rockerbox.com/rockerbox-starter', http_status: 200, effective_url: 'https://www.rockerbox.com/product', fetched: '2026-08-13'}
 - {url: 'https://data-foundation.rockerbox.com/warehousing/quickstart.md', http_status: 200, fetched: '2026-08-13'}
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  units: []
+  plans:
+  - name: Custom (contact sales)
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
