@@ -1,0 +1,60 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- https://hightouch.com/docs/destinations/rockerbox
+- https://vendor-list.consensu.org/v3/vendor-list.json
+marketplace_apps: []
+edges:
+- partner_name: IAB Europe TCF Global Vendor List
+  partner: null
+  partner_match: domain
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://vendor-list.consensu.org/v3/vendor-list.json
+  contract_reference:
+    register: IAB Europe TCF Global Vendor List
+    spec_file: null
+    role: tcf-vendor
+    registered_name: Rockerbox, Inc
+    register_id: '232'
+    products:
+    - Rockerbox, Inc
+    matched_domain: rockerbox.com
+    api_families:
+    - feature-1
+    - feature-2
+    - feature-3
+    - purpose-1
+    - purpose-7
+    api_families_basis: TCF purposes, special purposes, features and special features declared on the registration
+    detected_by: sweep-adtech.py
+    detected: '2026-10-14'
+  detected_by: sweep-adtech.py
+  detected: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/rockerbox
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - rockerbox
+      status: released
+      sync_types:
+      - Batch File Delivery
+      sync_modes:
+      - all
+      - diff
+      - insert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+source: https://hightouch.com/docs/destinations/rockerbox
