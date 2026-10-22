@@ -6,30 +6,6 @@ checked:
 - https://vendor-list.consensu.org/v3/vendor-list.json
 marketplace_apps: []
 edges:
-- partner_name: Hightouch
-  partner: hightouch
-  partner_match: aggregator
-  marketplace: coverage
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: connector-coverage
-  evidence: https://hightouch.com/docs/destinations/rockerbox
-  coverage_role:
-  - destination
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - rockerbox
-      status: released
-      sync_types:
-      - Batch File Delivery
-      sync_modes:
-      - all
-      - diff
-      - insert
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
 - partner_name: IAB Europe TCF Global Vendor List
   partner: null
   partner_match: domain
@@ -88,7 +64,31 @@ edges:
     matched_domain: rockerbox.com
     matched_by: own-domain
     detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   detected_by: sweep-ai-agents.py
   first_seen: '2026-10-15'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/rockerbox
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - rockerbox
+      status: released
+      sync_types:
+      - Batch File Delivery
+      sync_modes:
+      - all
+      - diff
+      - insert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 source: https://hightouch.com/docs/destinations/rockerbox
