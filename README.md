@@ -1,4 +1,4 @@
-# Rockerbox (rockerbox)
+# Rockerbox
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,49 +64,133 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Rockerbox is a unified marketing measurement platform with a REST API for querying multi-touch attribution data, channel performance, customer journeys, and media spend effectiveness across 100+ integrations, combining MTA, Marketing Mix Modeling, and incrementality testing on a SOC2-certified data foundation.
+Rockerbox is a New York-based unified marketing measurement platform that combines multi-touch attribution (MTA), marketing mix modeling (MMM) and incrementality testing on a single first-party data foundation spanning 100+ advertising integrations. Its developer surface is deliberately narrow and unusual: there is no public REST API and no OpenAPI. Data goes IN through a documented server-side conversion webhook, onsite tracking pixels, and batch files; results come OUT as warehouse shares into Snowflake, BigQuery or Redshift against published schemas, plus scheduled and ad hoc exports. Rockerbox does, however, run a genuinely modern agent surface on its Data Foundation documentation host — an anonymous remote MCP server, an A2A agent card, a provider-published Agent Skill, an llms.txt, and an explicit robots.txt Content-Signal grant.
 
-APIs.json: https://raw.githubusercontent.com/api-evangelist/rockerbox/refs/heads/main/apis.yml
+**Areas:** Marketing Attribution · Multi-Touch Attribution · Marketing Mix Modeling · Incrementality Testing · Media Spend · Customer Journey · Marketing Analytics · Data Warehousing · Conversion Tracking · Webhook · A2A · Attribution
 
-Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=rockerbox-api-evangelist&utm_content=repo
+## Rockerbox on APIs.io
 
-## Tags
+Everything profiled for Rockerbox is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/rockerbox/](https://apis.io/providers/rockerbox/)** — or go straight to one of the APIs or properties below.
 
-- Marketing Attribution
-- Multi-Touch Attribution
-- Marketing Mix Modeling
-- Incrementality Testing
-- Media Spend
-- Customer Journeys
-- Marketing Analytics
+### APIs (2)
 
-## APIs
+- [Rockerbox Conversion & Marketing Event Ingestion](https://apis.io/apis/rockerbox/rockerbox-api/) — Rockerbox's server-side integration. A documented HTTP POST endpoint that accepts one conversion or marketing event per request as JSON, authenticated by a…
+- [Rockerbox Data Foundation](https://apis.io/apis/rockerbox/rockerbox-data-foundation/) — Rockerbox's warehouse-share delivery surface and the documentation site that describes it. The contract here is a set of published dataset schemas —…
 
-- **Rockerbox API** - REST API for querying multi-touch attribution data, channel performance metrics, customer journeys, and media spend effectiveness across all integrated marketing channels.
-  - Documentation: https://help.rockerbox.com/category/wcd840uzni-api-integrations
-  - API Reference: https://backend-prod-k8s.rockerbox.tech/docs
+### Published properties
 
-## Plans / Rate Limits / FinOps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Plans**: [plans/rockerbox-plans-pricing.yml](plans/rockerbox-plans-pricing.yml) — Custom enterprise pricing starting around $2,000/month; annual contracts standard with multi-year discounts of 10-20%.
-- **Rate Limits**: [rate-limits/rockerbox-rate-limits.yml](rate-limits/rockerbox-rate-limits.yml) — Rate limits are not publicly documented; communicated via enterprise contracts.
-- **FinOps**: [finops/rockerbox-finops.yml](finops/rockerbox-finops.yml) — FOCUS-aligned cost management guidance for Rockerbox API consumption.
+#### AsyncAPI (1)
 
-## Timestamps
+Event-driven and webhook contracts.
 
-- Created: 2026-06-13
-- Modified: 2026-06-13
+- [Rockerbox Webhooks](https://apis.io/asyncapis/rockerbox/rockerbox-webhooks/)
 
-## Common
+#### MCP servers (1)
 
-- Website: https://www.rockerbox.com/
-- Documentation: https://help.rockerbox.com/
-- GitHub Org: https://github.com/rockerbox
-- LinkedIn: https://www.linkedin.com/company/rockerbox
-- Blog: https://www.rockerbox.com/blog
-- Pricing: https://www.rockerbox.com/plans
-- X: https://x.com/rockerbox
+Model Context Protocol servers that expose the API to agents.
 
-## Maintainers
+- [Rockerbox Data Foundation Docs](https://apis.io/servers/rockerbox/rockerbox-data-foundation-docs/)
 
-- Kin Lane (kin@apievangelist.com)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Rockerbox Context](https://apis.io/jsonld/rockerbox/rockerbox-context/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Rockerbox Authentication](https://apis.io/security/rockerbox/rockerbox-authentication/)
+- [Rockerbox Domain Security](https://apis.io/security/rockerbox/rockerbox-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Rockerbox Plans Pricing](https://apis.io/plans/rockerbox/rockerbox-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rockerbox Rate Limits](https://apis.io/rate-limits/rockerbox/rockerbox-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Rockerbox Finops](https://apis.io/finops/rockerbox/rockerbox-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.rockerbox.com/)
+- [Documentation](https://help.rockerbox.com/)
+- [Getting started](https://data-foundation.rockerbox.com/warehousing/quickstart)
+- [API reference](https://data-foundation.rockerbox.com/warehousing/schemas)
+- [Pricing](https://www.rockerbox.com/plans)
+- [Support](https://help.rockerbox.com/article/ocjyw3jty7-rockerbox-support)
+- [Blog](https://www.rockerbox.com/blog)
+- [Compliance](https://www.rockerbox.com/faq/how-does-rockerbox-provide-secure-marketing-measurement)
+- [Terms of service](https://www.rockerbox.com/website-terms-of-use/)
+- [Privacy policy](https://www.rockerbox.com/privacy)
+- [GitHub](https://github.com/rockerbox)
+
+## API Evangelist rating
+
+**Kin Score 52.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 49.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 64.3 |
+| Access clarity | 67.1 |
+
+**Agent readiness 32.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | flavored (partial credit) |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/rockerbox/](https://apis.io/providers/rockerbox/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Rockerbox: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/rockerbox/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
